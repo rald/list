@@ -1,7 +1,8 @@
 #include<stdlib.h>
+
 #include "list.h"
 
-List_Node *List_NodeNew(void *data,void *next) {
+List_Node *List_NodeNew(void *data,List_Node *next) {
 	List_Node *node=malloc(sizeof(*node));
 	if(node) {
 		node->data=data;
@@ -63,6 +64,14 @@ List_Node *List_Remove(List_Node **head,void *key,int(*compareFunction)(void *lh
 	}
 	if(!curr) return NULL;
 	prev->next=curr->next;
+	return curr;
+}
+
+List_Node *List_Search(List_Node **head,void *key,int(*compareFunction)(void *lhs,void *rhs)) {
+	List_Node *curr=*head;
+	while(curr && compareFunction(curr->data,key)) {
+		curr=curr->next;
+	}
 	return curr;
 }
 

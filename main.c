@@ -29,9 +29,20 @@ int main(int argc,char **argv) {
 	if(!List_Remove(&head,key,compareFunction)) {
 		printf("key not found\n");
 	};
-		
+	
+	*key=1;
+	if(List_Search(&head,key,compareFunction)) {
+		printf("key found\n");
+	} else {
+		printf("key not found\n");
+	}
+
+	
 	List_Print(head,printFunction);
 	printf("\n");
+
+
+	getch();
 
 	return 0;
 }
